@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Products_flying_cargo_YU\\Products_flying_cargo_YU.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "ProductsWForm\\ProductsWForm.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

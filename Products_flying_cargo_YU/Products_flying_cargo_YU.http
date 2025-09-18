@@ -1,0 +1,6 @@
+@Products_flying_cargo_YU_HostAddress = http://localhost:5152
+
+GET {{Products_flying_cargo_YU_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

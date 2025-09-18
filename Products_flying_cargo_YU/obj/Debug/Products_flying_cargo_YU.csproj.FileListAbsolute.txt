@@ -1,0 +1,9 @@
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\bin\Debug\Products_flying_cargo_YU.exe.config
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\bin\Debug\Products_flying_cargo_YU.exe
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\bin\Debug\Products_flying_cargo_YU.pdb
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\Products_flying_cargo_YU.csproj.AssemblyReference.cache
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\Products_flying_cargo_YU.Properties.Resources.resources
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\Products_flying_cargo_YU.csproj.GenerateResource.cache
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\Products_flying_cargo_YU.csproj.CoreCompileInputs.cache
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\Products_flying_cargo_YU.exe
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\Products_flying_cargo_YU.pdb
