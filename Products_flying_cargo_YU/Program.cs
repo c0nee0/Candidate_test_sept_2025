@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Products_flying_cargo_YU.Data;
 using Products_flying_cargo_YU.Interface;
 using Products_flying_cargo_YU.Repository;
+using Products_flying_cargo_YU.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductsRepository, ProductsRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ProductsService>();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddDbContext<DataContext>(options =>

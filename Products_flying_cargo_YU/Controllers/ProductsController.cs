@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Products_flying_cargo_YU.Dto;
 using Products_flying_cargo_YU.Interface;
 using Products_flying_cargo_YU.Models;
+using Products_flying_cargo_YU.Service;
 
 namespace Products_flying_cargo_YU.Controllers
 {
@@ -10,12 +11,12 @@ namespace Products_flying_cargo_YU.Controllers
     [ApiController]
     public class ProductsController : Controller
     {
-        private readonly IProductsRepository _productsRepository;
+        private readonly ProductsService _productsService;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductsRepository productsRepository, IMapper mapper)
+        public ProductsController(ProductsService productsService, IMapper mapper)
         {
-            _productsRepository = productsRepository;
+            _productsService = productsService;
             _mapper = mapper;
         }
 
@@ -23,11 +24,7 @@ namespace Products_flying_cargo_YU.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Products>))]
         public IActionResult GetProducts()
         {
-            var products = _mapper.Map<List<ProductsDto>>(_productsRepository.GetProducts());
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
+            var products = _mapper.Map<List<ProductsDto>>(_productsService.GetProducts());
             return Ok(products);
         }
 
@@ -36,15 +33,12 @@ namespace Products_flying_cargo_YU.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetProduct(int productId)
         {
-            if (!_productsRepository.ProductExists(productId))
+            var product = _productsService.GetProduct(productId);
+            if (product == null)
                 return NotFound();
 
-            var product = _mapper.Map<ProductsDto>(_productsRepository.GetProduct(productId));
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            return Ok(product);
+            var productDto = _mapper.Map<ProductsDto>(product);
+            return Ok(productDto);
         }
 
         [HttpGet("category/{productId}")]
@@ -52,12 +46,8 @@ namespace Products_flying_cargo_YU.Controllers
         [ProducesResponseType(400)]
         public IActionResult GetCategoryByProduct(int productId)
         {
-            var category = _mapper.Map<List<CategoryDto>>(_productsRepository.GetCategoryByProduct(productId));
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            return Ok(category);
+            var categories = _mapper.Map<List<CategoryDto>>(_productsService.GetCategoryByProduct(productId));
+            return Ok(categories);
         }
 
         [HttpPost]
@@ -66,30 +56,19 @@ namespace Products_flying_cargo_YU.Controllers
         public IActionResult CreateProduct([FromQuery] int categoryId, [FromBody] ProductsDto productCreate)
         {
             if (productCreate == null)
-                return BadRequest(ModelState);
+                return BadRequest();
 
-            var products = _productsRepository.GetProducts()
-                .Where(p => p.ProductName.Trim().ToUpper() == productCreate.ProductName.TrimEnd().ToUpper())
-                .FirstOrDefault();
+            var product = _mapper.Map<Products>(productCreate);
 
-            if (products != null)
+            try
             {
-                ModelState.AddModelError("", "Product already exists");
-                return StatusCode(422, ModelState);
+                _productsService.CreateProduct(categoryId, product);
+                return Ok("Successfully created");
             }
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var productMap = _mapper.Map<Products>(productCreate);
-
-            if (!_productsRepository.CreateProduct(categoryId, productMap))
+            catch (Exception ex)
             {
-                ModelState.AddModelError("", "Something went wrong while saving");
-                return StatusCode(500, ModelState);
+                return StatusCode(422, new { error = ex.Message });
             }
-
-            return Ok("Successfully created");
         }
 
         [HttpPut("{productId}")]
@@ -98,27 +77,20 @@ namespace Products_flying_cargo_YU.Controllers
         [ProducesResponseType(404)]
         public IActionResult UpdateProduct(int productId, [FromQuery] int categoryId, [FromBody] ProductsDto productUpdate)
         {
-            if (productUpdate == null)
-                return BadRequest(ModelState);
+            if (productUpdate == null || productId != productUpdate.ProductID)
+                return BadRequest();
 
-            if (productId != productUpdate.ProductID)
-                return BadRequest(ModelState);
+            var product = _mapper.Map<Products>(productUpdate);
 
-            if (!_productsRepository.ProductExists(productId))
-                return NotFound();
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var productMap = _mapper.Map<Products>(productUpdate);
-
-            if (!_productsRepository.UpdateProduct(categoryId, productMap))
+            try
             {
-                ModelState.AddModelError("", "Something went wrong while saving");
-                return StatusCode(500, ModelState);
+                _productsService.UpdateProduct(categoryId, product);
+                return Ok("Successfully updated");
             }
-
-            return Ok("Successfully updated");
+            catch (Exception ex)
+            {
+                return StatusCode(422, new { error = ex.Message });
+            }
         }
 
         [HttpDelete("{productId}")]
@@ -127,22 +99,15 @@ namespace Products_flying_cargo_YU.Controllers
         [ProducesResponseType(404)]
         public IActionResult DeleteProduct(int productId)
         {
-            if (!_productsRepository.ProductExists(productId))
-                return NotFound();
-
-            var productCategoryToDelete = _productsRepository.GetCategoryByProduct(productId);
-            var productToDelete = _productsRepository.GetProduct(productId);
-
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            if (!_productsRepository.DeleteProduct(productToDelete))
+            try
             {
-                ModelState.AddModelError("", "Something went wrong");
-                return StatusCode(500, ModelState);
+                _productsService.DeleteProduct(productId);
+                return Ok("Successfully deleted");
             }
-
-            return Ok("Successfully deleted");
+            catch (Exception ex)
+            {
+                return StatusCode(422, new { error = ex.Message });
+            }
         }
     }
 }

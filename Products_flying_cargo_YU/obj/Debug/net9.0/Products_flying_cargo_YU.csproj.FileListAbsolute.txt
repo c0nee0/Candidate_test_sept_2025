@@ -163,3 +163,4 @@ C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\ob
 C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\net9.0\ref\Products_flying_cargo_YU.dll
 C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\bin\Debug\net9.0\AutoMapper.dll
 C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\Products_flying_cargo_YU\obj\Debug\net9.0\Products_flying_cargo_YU.sourcelink.json

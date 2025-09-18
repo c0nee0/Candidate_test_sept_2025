@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Products_flying_cargo_YU")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6ca6d4f8fd0b9a1a2a1c6f0af4b309e9440949be")]
 [assembly: System.Reflection.AssemblyProductAttribute("Products_flying_cargo_YU")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Products_flying_cargo_YU")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

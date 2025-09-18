@@ -72,3 +72,4 @@ C:\Users\dusan\source\repos\Products_flying_cargo_YU\ProductsWForm\obj\Debug\net
 C:\Users\dusan\source\repos\Products_flying_cargo_YU\ProductsWForm\obj\Debug\net9.0-windows\ProductsWForm.AddFormFolder.AddProduct.resources
 C:\Users\dusan\source\repos\Products_flying_cargo_YU\ProductsWForm\obj\Debug\net9.0-windows\ProductsWForm.ProductsF.resources
 C:\Users\dusan\source\repos\Products_flying_cargo_YU\ProductsWForm\obj\Debug\net9.0-windows\ProductsWForm.EditProduct.resources
+C:\Users\dusan\source\repos\Products_flying_cargo_YU\ProductsWForm\obj\Debug\net9.0-windows\ProductsWForm.sourcelink.json
